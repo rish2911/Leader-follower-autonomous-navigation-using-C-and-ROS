@@ -1,0 +1,226 @@
+\hypertarget{classfp_1_1_robot}{}\doxysection{fp\+::Robot Class Reference}
+\label{classfp_1_1_robot}\index{fp::Robot@{fp::Robot}}
+
+
+Class to represent a robot in an environment.  
+
+
+
+
+{\ttfamily \#include $<$robot.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfp_1_1_robot_a211295d3d47123721a8ea878eacccde2}{Robot}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor for \mbox{\hyperlink{classfp_1_1_robot}{Robot}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classfp_1_1_robot_afe8d3f1173e1d532a254c831c2c320ea}{Robot}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classfp_1_1_robot}{Robot}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classfp_1_1_robot_a0aa6e87af6c0ce04c38b74e881b305be}{listen}} (tf2\+\_\+ros\+::\+Buffer \&tf\+Buffer)
+\begin{DoxyCompactList}\small\item\em Listens to tf2\+\_\+ros\+::\+Buffer and uses tf transform to get the coordinates of the markers in map frame. Used to get goal locations for follower robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classfp_1_1_robot_ae81e790100e8b4bcec2a7a471917e67b}{fiducial\+\_\+callback}} (const fiducial\+\_\+msgs\+::\+Fiducial\+Transform\+Array\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Detect aruco information from the camera and publish the location and aruco ID. \end{DoxyCompactList}\item 
+std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ \mbox{\hyperlink{classfp_1_1_robot_a5ad88f56473b5f04d972178bd577a255}{get\+\_\+goal}} ()
+\begin{DoxyCompactList}\small\item\em Get the goal array from parameter server and store it in aruco\+\_\+loc. \end{DoxyCompactList}\item 
+std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ \mbox{\hyperlink{classfp_1_1_robot_a860774805d98570018f31cd117ab5bf2}{get\+\_\+goal}} (std\+::string \mbox{\hyperlink{classfp_1_1_robot_ab98bb50f428407dfd89dca3062270d71}{m\+\_\+name}})
+\begin{DoxyCompactList}\small\item\em Get the goal array for follower and store it in marker\+\_\+loc. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classfp_1_1_robot_ae6511bec50fd2917c855b311294b9d39}{move}} (std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ goal\+\_\+loc)
+\begin{DoxyCompactList}\small\item\em Allows the robots to move to goal location. In case of the explorer, it also turns on spot and finds the aruco marker and broadcasts its location wrt global coordinates after transformation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Node\+Handle \mbox{\hyperlink{classfp_1_1_robot_ae015f8fb35da443cc1261eb611b1cbad}{m\+\_\+nh}}
+\item 
+bool \mbox{\hyperlink{classfp_1_1_robot_ab4f65ddf5c1fd108f5b9f976afe288b8}{saw\+\_\+marker}} \{false\}
+\item 
+int32\+\_\+t \mbox{\hyperlink{classfp_1_1_robot_a9045c51509f4f5289373e7e9bfa78a0b}{m\+\_\+aruco\+\_\+id}} \{\}
+\item 
+std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ \mbox{\hyperlink{classfp_1_1_robot_aba609a3a69f9aea68552bfefe7a1422e}{marker\+\_\+loc}}
+\item 
+actionlib\+::\+Simple\+Action\+Client$<$ move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action $>$ \mbox{\hyperlink{classfp_1_1_robot_a0bb85daeab88f9b1a7b2f4db95ec6554}{m\+\_\+client}}
+\item 
+move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Goal \mbox{\hyperlink{classfp_1_1_robot_a7ae71ab0e5a9255855ab8987fb7ee273}{m\+\_\+goal}}
+\item 
+std\+::string \mbox{\hyperlink{classfp_1_1_robot_ab98bb50f428407dfd89dca3062270d71}{m\+\_\+name}}
+\item 
+geometry\+\_\+msgs\+::\+Twist \mbox{\hyperlink{classfp_1_1_robot_aaec87551dc80bc4c179f9fbbfabc7193}{m\+\_\+msg}}
+\item 
+std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ \mbox{\hyperlink{classfp_1_1_robot_af23238067a2c2804800e56ddbcb71ae1}{m\+\_\+aruco\+\_\+loc}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to represent a robot in an environment. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfp_1_1_robot_a211295d3d47123721a8ea878eacccde2}\label{classfp_1_1_robot_a211295d3d47123721a8ea878eacccde2}} 
+\index{fp::Robot@{fp::Robot}!Robot@{Robot}}
+\index{Robot@{Robot}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{Robot()}{Robot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily fp\+::\+Robot\+::\+Robot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor for \mbox{\hyperlink{classfp_1_1_robot}{Robot}} object. 
+
+\mbox{\Hypertarget{classfp_1_1_robot_afe8d3f1173e1d532a254c831c2c320ea}\label{classfp_1_1_robot_afe8d3f1173e1d532a254c831c2c320ea}} 
+\index{fp::Robot@{fp::Robot}!Robot@{Robot}}
+\index{Robot@{Robot}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{Robot()}{Robot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily fp\+::\+Robot\+::\+Robot (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classfp_1_1_robot}{Robot}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & std\+::string \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classfp_1_1_robot_ae81e790100e8b4bcec2a7a471917e67b}\label{classfp_1_1_robot_ae81e790100e8b4bcec2a7a471917e67b}} 
+\index{fp::Robot@{fp::Robot}!fiducial\_callback@{fiducial\_callback}}
+\index{fiducial\_callback@{fiducial\_callback}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{fiducial\_callback()}{fiducial\_callback()}}
+{\footnotesize\ttfamily void fp\+::\+Robot\+::fiducial\+\_\+callback (\begin{DoxyParamCaption}\item[{const fiducial\+\_\+msgs\+::\+Fiducial\+Transform\+Array\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Detect aruco information from the camera and publish the location and aruco ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classfp_1_1_robot_a5ad88f56473b5f04d972178bd577a255}\label{classfp_1_1_robot_a5ad88f56473b5f04d972178bd577a255}} 
+\index{fp::Robot@{fp::Robot}!get\_goal@{get\_goal}}
+\index{get\_goal@{get\_goal}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{get\_goal()}{get\_goal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ fp\+::\+Robot\+::get\+\_\+goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the goal array from parameter server and store it in aruco\+\_\+loc. 
+
+\begin{DoxyReturn}{Returns}
+std\+::array$<$std\+::array$<$double, 2$>$, 5$>$ array of goal locations including home 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfp_1_1_robot_a860774805d98570018f31cd117ab5bf2}\label{classfp_1_1_robot_a860774805d98570018f31cd117ab5bf2}} 
+\index{fp::Robot@{fp::Robot}!get\_goal@{get\_goal}}
+\index{get\_goal@{get\_goal}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{get\_goal()}{get\_goal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$ fp\+::\+Robot\+::get\+\_\+goal (\begin{DoxyParamCaption}\item[{std\+::string}]{m\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get the goal array for follower and store it in marker\+\_\+loc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+name} & std\+::string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::array$<$std\+::array$<$double, 2$>$, 5$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfp_1_1_robot_a0aa6e87af6c0ce04c38b74e881b305be}\label{classfp_1_1_robot_a0aa6e87af6c0ce04c38b74e881b305be}} 
+\index{fp::Robot@{fp::Robot}!listen@{listen}}
+\index{listen@{listen}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily void fp\+::\+Robot\+::listen (\begin{DoxyParamCaption}\item[{tf2\+\_\+ros\+::\+Buffer \&}]{tf\+Buffer }\end{DoxyParamCaption})}
+
+
+
+Listens to tf2\+\_\+ros\+::\+Buffer and uses tf transform to get the coordinates of the markers in map frame. Used to get goal locations for follower robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tf\+Buffer} & ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classfp_1_1_robot_ae6511bec50fd2917c855b311294b9d39}\label{classfp_1_1_robot_ae6511bec50fd2917c855b311294b9d39}} 
+\index{fp::Robot@{fp::Robot}!move@{move}}
+\index{move@{move}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void fp\+::\+Robot\+::move (\begin{DoxyParamCaption}\item[{std\+::array$<$ std\+::array$<$ double, 2 $>$, 5 $>$}]{goal\+\_\+loc }\end{DoxyParamCaption})}
+
+
+
+Allows the robots to move to goal location. In case of the explorer, it also turns on spot and finds the aruco marker and broadcasts its location wrt global coordinates after transformation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em goal\+\_\+loc} & std\+::array$<$std\+::array$<$double, 2$>$, 5$>$ ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classfp_1_1_robot_a9045c51509f4f5289373e7e9bfa78a0b}\label{classfp_1_1_robot_a9045c51509f4f5289373e7e9bfa78a0b}} 
+\index{fp::Robot@{fp::Robot}!m\_aruco\_id@{m\_aruco\_id}}
+\index{m\_aruco\_id@{m\_aruco\_id}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_aruco\_id}{m\_aruco\_id}}
+{\footnotesize\ttfamily int32\+\_\+t fp\+::\+Robot\+::m\+\_\+aruco\+\_\+id \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_af23238067a2c2804800e56ddbcb71ae1}\label{classfp_1_1_robot_af23238067a2c2804800e56ddbcb71ae1}} 
+\index{fp::Robot@{fp::Robot}!m\_aruco\_loc@{m\_aruco\_loc}}
+\index{m\_aruco\_loc@{m\_aruco\_loc}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_aruco\_loc}{m\_aruco\_loc}}
+{\footnotesize\ttfamily std\+::array$<$std\+::array$<$double, 2$>$, 5$>$ fp\+::\+Robot\+::m\+\_\+aruco\+\_\+loc\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_a0bb85daeab88f9b1a7b2f4db95ec6554}\label{classfp_1_1_robot_a0bb85daeab88f9b1a7b2f4db95ec6554}} 
+\index{fp::Robot@{fp::Robot}!m\_client@{m\_client}}
+\index{m\_client@{m\_client}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_client}{m\_client}}
+{\footnotesize\ttfamily actionlib\+::\+Simple\+Action\+Client$<$move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Action$>$ fp\+::\+Robot\+::m\+\_\+client\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_a7ae71ab0e5a9255855ab8987fb7ee273}\label{classfp_1_1_robot_a7ae71ab0e5a9255855ab8987fb7ee273}} 
+\index{fp::Robot@{fp::Robot}!m\_goal@{m\_goal}}
+\index{m\_goal@{m\_goal}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_goal}{m\_goal}}
+{\footnotesize\ttfamily move\+\_\+base\+\_\+msgs\+::\+Move\+Base\+Goal fp\+::\+Robot\+::m\+\_\+goal\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_aaec87551dc80bc4c179f9fbbfabc7193}\label{classfp_1_1_robot_aaec87551dc80bc4c179f9fbbfabc7193}} 
+\index{fp::Robot@{fp::Robot}!m\_msg@{m\_msg}}
+\index{m\_msg@{m\_msg}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_msg}{m\_msg}}
+{\footnotesize\ttfamily geometry\+\_\+msgs\+::\+Twist fp\+::\+Robot\+::m\+\_\+msg\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_ab98bb50f428407dfd89dca3062270d71}\label{classfp_1_1_robot_ab98bb50f428407dfd89dca3062270d71}} 
+\index{fp::Robot@{fp::Robot}!m\_name@{m\_name}}
+\index{m\_name@{m\_name}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_name}{m\_name}}
+{\footnotesize\ttfamily std\+::string fp\+::\+Robot\+::m\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_ae015f8fb35da443cc1261eb611b1cbad}\label{classfp_1_1_robot_ae015f8fb35da443cc1261eb611b1cbad}} 
+\index{fp::Robot@{fp::Robot}!m\_nh@{m\_nh}}
+\index{m\_nh@{m\_nh}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{m\_nh}{m\_nh}}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle fp\+::\+Robot\+::m\+\_\+nh\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_aba609a3a69f9aea68552bfefe7a1422e}\label{classfp_1_1_robot_aba609a3a69f9aea68552bfefe7a1422e}} 
+\index{fp::Robot@{fp::Robot}!marker\_loc@{marker\_loc}}
+\index{marker\_loc@{marker\_loc}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{marker\_loc}{marker\_loc}}
+{\footnotesize\ttfamily std\+::array$<$std\+::array$<$double, 2$>$, 5$>$ fp\+::\+Robot\+::marker\+\_\+loc\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classfp_1_1_robot_ab4f65ddf5c1fd108f5b9f976afe288b8}\label{classfp_1_1_robot_ab4f65ddf5c1fd108f5b9f976afe288b8}} 
+\index{fp::Robot@{fp::Robot}!saw\_marker@{saw\_marker}}
+\index{saw\_marker@{saw\_marker}!fp::Robot@{fp::Robot}}
+\doxysubsubsection{\texorpdfstring{saw\_marker}{saw\_marker}}
+{\footnotesize\ttfamily bool fp\+::\+Robot\+::saw\+\_\+marker \{false\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/manu/catkin\+\_\+ws/src/final\+\_\+project/include/robot/\mbox{\hyperlink{robot_8h}{robot.\+h}}\item 
+/home/manu/catkin\+\_\+ws/src/final\+\_\+project/src/\mbox{\hyperlink{robot_8cpp}{robot.\+cpp}}\end{DoxyCompactItemize}
